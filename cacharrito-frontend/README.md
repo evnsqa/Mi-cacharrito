@@ -1,6 +1,10 @@
 # CacharritoFrontend
 
+<<<<<<< HEAD
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+=======
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.23.
+>>>>>>> 8139a59cfc45de1b72d97b64aa63e6987ad12dd6
 
 ## Development server
 
