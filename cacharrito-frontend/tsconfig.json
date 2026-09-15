@@ -3,10 +3,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-<<<<<<< HEAD
-=======
-    "strict": true,
->>>>>>> 8139a59cfc45de1b72d97b64aa63e6987ad12dd6
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -21,12 +17,7 @@
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
-<<<<<<< HEAD
     "strictInputAccessModifiers": true
-=======
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
->>>>>>> 8139a59cfc45de1b72d97b64aa63e6987ad12dd6
   },
   "files": [],
   "references": [
