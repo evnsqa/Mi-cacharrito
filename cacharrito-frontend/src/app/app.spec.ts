@@ -5,8 +5,12 @@ describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+<<<<<<< HEAD
     })
       .compileComponents();
+=======
+    }).compileComponents();
+>>>>>>> 8139a59cfc45de1b72d97b64aa63e6987ad12dd6
   });
 
   it('should create the app', () => {
