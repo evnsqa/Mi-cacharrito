@@ -3,7 +3,11 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
+<<<<<<< HEAD
+    "analytics": "100af0dc-673a-4f10-b1b3-6a4fa3b69271"
+=======
     "analytics": "16d40de2-ccf6-44e8-874c-8dba2a508ed1"
+>>>>>>> 8139a59cfc45de1b72d97b64aa63e6987ad12dd6
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -26,8 +30,17 @@
               }
             ],
             "styles": [
+<<<<<<< HEAD
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js"]
+=======
               "src/styles.css"
             ]
+>>>>>>> 8139a59cfc45de1b72d97b64aa63e6987ad12dd6
           },
           "configurations": {
             "production": {
