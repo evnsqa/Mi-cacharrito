@@ -1,0 +1,26 @@
+/* Colores de fondo y bordes */
+.bg-obsidiana { 
+  background-color: #151515; 
+}
+.border-top-zafiro { 
+  border-top: 4px solid #0D6EFD; 
+}
+
+/* Colores de texto */
+.text-perla { 
+  color: #F8F9FA; 
+}
+.text-grafito { 
+  color: #6C757D; 
+}
+
+/* Elementos específicos */
+.badge-naranja { 
+  background-color: #FD7E14; 
+  color: #151515; 
+}
+.input-newsletter {
+  background-color: #242424;
+  border: 1px solid #333;
+  color: #F8F9FA;
+}

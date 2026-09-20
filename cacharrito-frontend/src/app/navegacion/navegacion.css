@@ -1,0 +1,13 @@
+
+
+.navbar {
+    background-color: #151515;
+}
+.botonRegistro{
+    background-color: rgb(255, 255, 255);
+}
+.botonRegistro:hover{
+        background-color: rgba(165, 42, 42, 0);
+        color: rgb(255, 255, 255);
+        border: hsl(0, 0%, 100%) solid 1px;
+}
