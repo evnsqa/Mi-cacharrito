@@ -1,6 +1,6 @@
 import { TipoVehiculo } from "./tipo-vehiculo";
 
-export interface Vehiculo {
+export class Vehiculo {
     placa:string;
     color:string;
     precio:number;

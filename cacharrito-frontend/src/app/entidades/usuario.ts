@@ -1,4 +1,4 @@
-export interface Usuario {
+export class Usuario {
     idUsuario: number;
     nombreCompleto: String;
     fechaExpedicionLicencia: Date;
