@@ -2,9 +2,10 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navegacion } from './navegacion/navegacion';
 import { Footer } from './footer/footer';
+import { InicioSesion } from './inicio-sesion/inicio-sesion';
 
 @Component({
-  imports: [RouterOutlet, Navegacion, Footer],
+  imports: [RouterOutlet, Navegacion, Footer, InicioSesion],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
