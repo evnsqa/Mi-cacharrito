@@ -1,0 +1,45 @@
+<!-- Contenedor principal que ocupa toda la pantalla -->
+<div class="container-fluid pantalla-login d-flex align-items-center justify-content-center">
+  
+  <!-- Tarjeta de Login -->
+  <div class="card bg-tarjeta-oscura shadow-lg p-4 p-md-5" style="width: 100%; max-width: 450px;">
+    
+    <!-- Encabezado del formulario -->
+    <div class="text-center mb-4">
+      <!-- Icono opcional (Puedes usar Bootstrap Icons) -->
+      <h2 class="font-weight-bold text-perla mb-2">Mi Cacharrito</h2>
+      <p class="text-grafito">Ingresa para reservar tu próximo vehículo</p>
+    </div>
+    
+    <!-- Formulario -->
+    <form>
+      <!-- Campo: Número de Identificación (Según los requerimientos) -->
+      <div class="mb-4">
+        <label for="identificacion" class="form-label text-perla fw-bold">Número de identificación</label>
+        <input type="number" class="form-control input-oscuro shadow-none py-2" id="identificacion" placeholder="Ej: 1053456789" required>
+      </div>
+      
+      <!-- Campo: Password (Según los requerimientos) -->
+      <div class="mb-4">
+        <label for="password" class="form-label text-perla fw-bold">Contraseña</label>
+        <input type="password" class="form-control input-oscuro shadow-none py-2" id="password" placeholder="Tu contraseña secreta" required>
+      </div>
+      
+      <!-- Checkbox de "Recordarme" -->
+      <div class="mb-4 form-check">
+        <input type="checkbox" class="form-check-input" id="recordarme">
+        <label class="form-check-label text-grafito" for="recordarme">Recordar mis datos</label>
+      </div>
+      
+      <!-- Botón de Acción -->
+      <button type="submit" class="btn btn-primary w-100 py-2 fs-5 fw-bold mb-3">Iniciar Sesión</button>
+      
+      <!-- Enlaces adicionales -->
+      <div class="text-center mt-3">
+        <p class="text-grafito mb-1">¿No tienes una cuenta aún?</p>
+        <a href="#" class="text-decoration-none text-perla fw-bold">Regístrate aquí</a>
+      </div>
+    </form>
+
+  </div>
+</div>
