@@ -1,40 +1,125 @@
 <body>
     <main>
+
         <section class="carrusel">
-        <!-- Carousel -->
+
+            <!-- Carousel -->
             <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
                 <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+                </div>
+
+                <!-- The slideshow/carousel -->
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <video class="d-block w-150" autoplay loop muted playsinline>
+                            <source src="recursos/vid1.mp4" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
                     </div>
 
-                    <!-- The slideshow/carousel -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="/imagenes_prueba/img.c1.avif" class="d-block w-100" alt="Carrusel 1">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/imagenes_prueba/img.c3.avif" class="d-block w-100" alt="Carrusel 2">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/imagenes_prueba/img.c5.jpg" class="d-block w-100" alt="Carrusel 3">
-                        </div>
-                        </div>
+                    <div class="carousel-item">
+                        <video class="d-block w-150" autoplay loop muted playsinline>
+                            <source src="recursos/vd2.mp4" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                    </div>
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
+                    <div class="carousel-item">
+                        <video class="d-block w-150" autoplay loop muted playsinline>
+                            <source src="recursos/vd5.mp4" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                    </div>
 
-                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
                 </div>
-            </section>
 
-            <div>
-                <h1>INICIOOO</h1>
+                <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
             </div>
+
+        </section>
+
+
+        <section class="contenedorInfo">
+
+            <h1>QUIENES SOMOS</h1>
+
+            <div class="texto">
+                En Mi Cacharrito alquilar carro es fácil, rápido y sin complicaciones. Tenemos una flota lista para lo que necesite: un carro económico para andar por la ciudad, 
+                una camioneta para viajar con la familia o un campero para la ruta. Puede consultar la disponibilidad en tiempo real, hacer su reserva desde la página en un par de minutos 
+                y pasar por las llaves a la sede sin trámites complejos.
+            </div>
+
+        </section>
+
+
+        <section class="flotas1">
+
+            <div class="Tittle">
+                <h1>FLOTAS DISPONIBLES</h1>
+            </div>
+
+            <div class="container mt-5">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-12 col-sm-3 flota-container">
+                        <img class="imgFlotas" src="/recursos/flota1.png">
+                        <h4>AUTOMOVILES</h4>
+                    </div>
+
+                    <div class="col-12 col-sm-3 flota-container">
+                        <img class="imgFlotas" src="/recursos/flota2.png">
+                        <h4>CAMIONETAS</h4>
+                    </div>
+
+                    <div class="col-12 col-sm-3 flota-container">
+                        <img class="imgFlotas" src="/recursos/flota3.png">
+                        <h4>CAMPERO</h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="flotas2">
+
+            <div class="container mt-5">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-12 col-sm-3 flota-container">
+                        <img class="imgFlotas" src="/recursos/flota4.png"
+                            data-bs-toggle="collapse" data-bs-target="#infoPeli1">
+                        <h4>MICROBUS</h4>
+                    </div>
+
+                    <div class="col-12 col-sm-3 flota-container">
+                        <img class="imgFlotas" src="/recursos/flota5.png"
+                            data-bs-toggle="collapse" data-bs-target="#infoPeli2">
+                        <h4>MOTOCICLETA</h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
 </body>
