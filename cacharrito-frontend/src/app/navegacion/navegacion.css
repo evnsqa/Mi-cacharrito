@@ -3,10 +3,11 @@
     background-color: #151515;
 }
 .botonRegistro{
-    background-color: rgb(255, 255, 255);
+    background-color: #255C7E;
+    color: black;
 }
 .botonRegistro:hover{
         background-color: rgba(165, 42, 42, 0);
         color: rgb(255, 255, 255);
-        border: hsl(0, 0%, 100%) solid 1px;
+        border: #255C7E solid 1px;
 }
