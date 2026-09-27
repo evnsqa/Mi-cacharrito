@@ -33,6 +33,9 @@ public class Alquiler {
 	@Column(name = "estado", length = 50, nullable = false)
 	private String estado;
 	
+	@Column(name = "fecha_entrega_real", length = 50)
+	private LocalDate fechaEntregaReal;
+	
 	@ManyToOne ()
 	@JoinColumn (name = "id_usuario", referencedColumnName="id")
 	private Usuario usuario;
@@ -44,32 +47,38 @@ public class Alquiler {
 	@ManyToOne ()
 	@JoinColumn (name = "placa", referencedColumnName="placa")
 	private Vehiculos vehiculos;
-	
-	public Alquiler(Long numeroAlquiler, LocalDate fechaInicio, LocalDate fechaEntrega, Double valorTotal, String estado) {
+
+	public Alquiler(Long numeroAlquiler, LocalDate fechaInicio, LocalDate fechaEntrega, Double valorTotal,
+			String estado, LocalDate fechaEntregaReal, Usuario usuario, Administrador administrador,
+			Vehiculos vehiculos) {
 		super();
 		this.numeroAlquiler = numeroAlquiler;
 		this.fechaInicio = fechaInicio;
 		this.fechaEntrega = fechaEntrega;
 		this.valorTotal = valorTotal;
 		this.estado = estado;
+		this.fechaEntregaReal = fechaEntregaReal;
+		this.usuario = usuario;
+		this.administrador = administrador;
+		this.vehiculos = vehiculos;
 	}
-	
-	public Alquiler(){
+
+	public Alquiler() {
 		
 	}
-	
+
 	public Long getNumeroAlquiler() {
 		return numeroAlquiler;
 	}
-	
+
 	public void setNumeroAlquiler(Long numeroAlquiler) {
 		this.numeroAlquiler = numeroAlquiler;
 	}
-	
+
 	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
-	
+
 	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
@@ -97,6 +106,37 @@ public class Alquiler {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
 
+	public LocalDate getFechaEntregaReal() {
+		return fechaEntregaReal;
+	}
+
+	public void setFechaEntregaReal(LocalDate fechaEntregaReal) {
+		this.fechaEntregaReal = fechaEntregaReal;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Administrador getAdministrador() {
+		return administrador;
+	}
+
+	public void setAdministrador(Administrador administrador) {
+		this.administrador = administrador;
+	}
+
+	public Vehiculos getVehiculos() {
+		return vehiculos;
+	}
+
+	public void setVehiculos(Vehiculos vehiculos) {
+		this.vehiculos = vehiculos;
+	}
 }
+
