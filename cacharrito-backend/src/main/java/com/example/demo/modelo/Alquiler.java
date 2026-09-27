@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -30,6 +32,18 @@ public class Alquiler {
 
 	@Column(name = "estado", length = 50, nullable = false)
 	private String estado;
+	
+	@ManyToOne ()
+	@JoinColumn (name = "id_usuario", referencedColumnName="id")
+	private Usuario usuario;
+	
+	@ManyToOne ()
+	@JoinColumn (name = "id_admi", referencedColumnName="idAdministrador")
+	private Administrador administrador;
+	
+	@ManyToOne ()
+	@JoinColumn (name = "placa", referencedColumnName="placa")
+	private Vehiculos vehiculos;
 	
 	public Alquiler(Long numeroAlquiler, LocalDate fechaInicio, LocalDate fechaEntrega, Double valorTotal, String estado) {
 		super();
