@@ -1,51 +1,87 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card shadow">
-        <div class="card-header bg-primary text-white text-center">
-          <h4 class="mb-0">Confirmar Alquiler de Vehículo</h4>
-        </div>
-        <div class="card-body">
-          
-          <!-- Formulario conectado a la función aceptarAlquiler() del .ts -->
-          <form (ngSubmit)="aceptarAlquiler()" #alquilerForm="ngForm">
-            
-            <!-- Campo temporal para la placa (para que puedas probar tu parte) -->
-            <div class="mb-3">
-              <label for="placa" class="form-label fw-bold">Placa del vehículo seleccionado</label>
-              <!-- En un futuro, esta placa vendrá del componente de tu compañero, 
-                   pero por ahora la puedes digitar para que el backend no falle -->
-              <input type="text" class="form-control" id="placa" name="placa" 
-                     placeholder="Ej: ABC-123" required
-                     [(ngModel)]="nuevoAlquiler.vehiculos"> 
-                     <!-- NOTA: Si en el backend tu entidad espera un objeto, deberás ajustar esto. -->
-            </div>
+<app-navegacion></app-navegacion>
 
-            <!-- Fecha de Inicio -->
-            <div class="mb-3">
-              <label for="fechaInicio" class="form-label fw-bold">Fecha de Inicio</label>
-              <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" 
-                     required [(ngModel)]="nuevoAlquiler.fechaInicio">
-            </div>
-
-            <!-- Fecha de Entrega -->
-            <div class="mb-4">
-              <label for="fechaEntrega" class="form-label fw-bold">Fecha de Entrega</label>
-              <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" 
-                     required [(ngModel)]="nuevoAlquiler.fechaEntrega">
-            </div>
-
-            <!-- Botón de Aceptar -->
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-success btn-lg" [disabled]="!alquilerForm.valid">
-                Aceptar Alquiler
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-      </div>
-    </div>
+<div id="pantalla-imprimir" style="background-color: white; padding: 20px;">
+<section class="container1">
+  <div class="Tittle">
+    <h2>SOLICITUD DE ALQUILER</h2>
   </div>
+  </section>
+
+  <section class="container2">
+  <div class="infoUsuario">
+    <p><strong>Nombre de usuario: </strong> tatata </p>
+    <p><strong>Identificación: </strong> tatata </p>
+  </div>
+</section>
+
+
+
+<section class="datosVehiculo">
+  <div class="container my-1">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="tableAlquileresP">
+                <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-center">PLACA</th>
+                    <th scope="col" class="text-center">TIPO VEHICULO</th>
+                    <th scope="col" class="text-center">COLOR</th>
+                    <th scope="col" class="text-center">FNOSE</th>
+                    <th scope="col" class="text-center">NOSE</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>dato</td>
+                        <td>hola</td>
+                        <td>nose</td>
+                        <td>Julieta es</td>
+                        <td>SAPA</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="row justify-content-center">
+
+    <div class="col-md-7">
+
+        <form (ngSubmit)="aceptarAlquiler()" #alquilerForm="ngForm" class="p-4 formulario-alquiler">
+
+            <h5 class="titulo-fechas">Fechas del Alquiler</h5>
+
+            <div class="row">
+
+                <div class="col-md-5 mb-3">
+                    <label for="fechaInicio" class="form-label fw-bold">Fecha de Inicio</label>
+
+                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio"
+                          required [(ngModel)]="nuevoAlquiler.fechaInicio">
+                </div>
+
+                <div class="col-md-5 mb-3">
+                    <label for="fechaEntrega" class="form-label fw-bold">Fecha de Entrega</label>
+
+                    <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega"
+                          required [(ngModel)]="nuevoAlquiler.fechaEntrega">
+                </div>
+                <div class="col-md-2 mb-3 d-flex align-items-end">
+                    <button type="submit" class="boton-aceptar" [disabled]="!alquilerForm.valid">
+                        Aceptar
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 </div>
