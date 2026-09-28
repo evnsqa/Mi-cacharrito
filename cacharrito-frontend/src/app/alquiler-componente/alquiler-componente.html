@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Confirmar Alquiler de Vehículo</h4>
+        </div>
+        <div class="card-body">
+          
+          <!-- Formulario conectado a la función aceptarAlquiler() del .ts -->
+          <form (ngSubmit)="aceptarAlquiler()" #alquilerForm="ngForm">
+            
+            <!-- Campo temporal para la placa (para que puedas probar tu parte) -->
+            <div class="mb-3">
+              <label for="placa" class="form-label fw-bold">Placa del vehículo seleccionado</label>
+              <!-- En un futuro, esta placa vendrá del componente de tu compañero, 
+                   pero por ahora la puedes digitar para que el backend no falle -->
+              <input type="text" class="form-control" id="placa" name="placa" 
+                     placeholder="Ej: ABC-123" required
+                     [(ngModel)]="nuevoAlquiler.vehiculos"> 
+                     <!-- NOTA: Si en el backend tu entidad espera un objeto, deberás ajustar esto. -->
+            </div>
+
+            <!-- Fecha de Inicio -->
+            <div class="mb-3">
+              <label for="fechaInicio" class="form-label fw-bold">Fecha de Inicio</label>
+              <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" 
+                     required [(ngModel)]="nuevoAlquiler.fechaInicio">
+            </div>
+
+            <!-- Fecha de Entrega -->
+            <div class="mb-4">
+              <label for="fechaEntrega" class="form-label fw-bold">Fecha de Entrega</label>
+              <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" 
+                     required [(ngModel)]="nuevoAlquiler.fechaEntrega">
+            </div>
+
+            <!-- Botón de Aceptar -->
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-success btn-lg" [disabled]="!alquilerForm.valid">
+                Aceptar Alquiler
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

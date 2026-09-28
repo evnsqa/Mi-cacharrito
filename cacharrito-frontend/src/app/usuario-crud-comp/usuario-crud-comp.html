@@ -1,0 +1,83 @@
+<div class="container-fluid py-4">
+  <div class="card shadow-sm border-0 rounded-3">
+    <div class="card-body p-4">
+      
+      <h3 class="fw-bold mb-4">Listado de Usuarios</h3>
+
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <div class="w-100" style="max-width: 300px;">
+          <select class="form-select buscarS" name="busqueda">
+        <option value="" disabled selected>Buscar por:</option>
+        <option value="placa">Nombre</option>
+        <option value="nombre">Identificación</option>
+        <option value="tipoVehiculo">Licencia</option>
+        <option value="precio">Telefono</option>
+        <option value="estado">Correo</option>
+      </select>
+        </div>
+        <button class="btn btn-primary text-white" routerLink="/registro">
+          <i class="bi bi-plus-lg me-1"></i> Añadir Nuevo Usuario
+        </button>
+      </div>
+
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Identificación</th>
+              <th>Nombre Completo</th>
+              <th>Correo Electrónico</th>
+              <th>Teléfono</th>
+              <th>Licencia</th>
+              <th>Expedición</th>
+              <th>Vigencia</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (i of listaU; track $index) {
+            <tr>
+                <td>{{i.idUsuario}}</td>
+                <td>{{i.nombreCompleto}}</td>
+                <td>{{i.correoElectronico}}</td>
+                <td>{{i.telefono}}</td>
+                <td>{{i.categoriaLicencia}}</td>
+                <td>{{i.fechaExpedicionLicencia}}</td>
+                <td>{{i.vigenciaLicencia}}</td>
+              <td class="text-center">
+                <div class="d-flex justify-content-center gap-2">
+                  <button class="btn btn-success btn-sm text-white">
+                    <i class="bi bi-pencil-square me-1"></i> Actualizar
+                  </button>
+                  <button class="btn btn-danger btn-sm text-white">
+                    <i class="bi bi-trash me-1"></i> Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+        }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Paginación -->
+      <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-3">
+        <span class="text-muted small">Página 1 de 5</span>
+        <nav aria-label="Navegación de páginas">
+          <ul class="pagination pagination-sm mb-0">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1"> < Anterior </a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#"> Siguiente > </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

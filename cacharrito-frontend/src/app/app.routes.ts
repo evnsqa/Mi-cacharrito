@@ -2,14 +2,23 @@ import { Routes } from '@angular/router';
 import { InicioComponente } from './inicio-componente/inicio-componente';
 import { InicioSesion } from './inicio-sesion/inicio-sesion';
 import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
+import { ContactoComponente } from './contacto-componente/contacto-componente';
+// import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
+// import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
 
 import { EntregaVehiculoComponente } from './entrega-vehiculo-componente/entrega-vehiculo-componente';
+import { RegistroUsuario } from './registro-usuario/registro-usuario';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: 'inicio', pathMatch: 'full' },
     { path: "inicio", component: InicioComponente},
-    { path: 'inicio-sesion', component: InicioSesion},
+    { path: "login", component: InicioSesion},
+    { path: "registro", component: RegistroUsuario},
+    { path: "contacto", component: ContactoComponente},
+    // { path: "tipos", component: TipoVehiculosComponent},
     { path: 'dashboardAdmin', component: DashboardAdminComponente},
     { path: 'EntregarVehiculo', component: EntregaVehiculoComponente}
+
 
 ];

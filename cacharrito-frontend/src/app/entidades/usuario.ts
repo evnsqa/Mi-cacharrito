@@ -1,10 +1,10 @@
 export class Usuario {
-    idUsuario: number;
-    nombreCompleto: String;
-    fechaExpedicionLicencia: Date;
-    categoriaLicencia: String;
-    vigenciaLicencia: Date;
-    correoElectronico: String;
-    telefono: String;
-    password: String;
+    idUsuario: string;
+    nombreCompleto: string;
+    fechaExpedicionLicencia: string;
+    categoriaLicencia: string;
+    vigenciaLicencia: string;
+    correoElectronico: string;
+    telefono: string;
+    password: string;
 }
