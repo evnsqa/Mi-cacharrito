@@ -4,98 +4,41 @@
   <div class="container-fluid px-4 px-md-5">
     <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
 
-      <!--Vehículo 1-->
+      <!-- CICLO DINÁMICO: Recorre la Signal listaMotos() y genera una columna por cada moto -->
+      @for(moto of listaMotos(); track moto.placa) {
       <div class="col">
         <div class="tarjetaContV h-100">
-          <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 1 - Motocicleta.png" class="imgV">
-          </div>
-          <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Gsx-8Tt</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
-        </div>
-      </div>
 
-      <!--Vehículo 2-->
-      <div class="col">
-        <div class="tarjetaContV h-100">
+          <!-- Contenedor de la Imagen dinámica -->
           <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 2 - Motocicleta.png" class="imgV">
+            @if(moto.imagen) {
+            <!-- Si el administrador le subió una foto en Base64, la renderiza aquí -->
+            <img [src]="moto.imagen" [alt]="moto.nombre" class="imgV">
+            } @else {
+            <!-- Imagen placeholder o texto de seguridad si el auto no tiene foto cargada -->
+            <span class="text-muted small">Sin imagen</span>
+            }
           </div>
-          <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Burgman 15</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
-        </div>
-      </div>
 
-      <!--Vehículo 3-->
-      <div class="col">
-        <div class="tarjetaContV h-100">
-          <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 3 - Motocicleta.png" class="imgV">
-          </div>
+          <!-- Cuerpo de la Tarjeta con los datos dinámicos -->
           <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Dr 150 Abs</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
-        </div>
-      </div>
+            <h3 class="tituloV">{{ moto.nombre }}</h3>
 
-      <!--Vehículo 4-->
-      <div class="col">
-        <div class="tarjetaContV h-100">
-          <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 4 - Motocicleta.png" class="imgV">
+            <!-- Al hacer clic, enviamos su identificador único (la placa) a la función explorar -->
+            <button class="botonE" type="button" (click)="explorarVehiculo(moto.placa)">
+              EXPLORAR
+            </button>
           </div>
-          <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Address Nm</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
-        </div>
-      </div>
 
-      <!--Vehículo 5-->
-      <div class="col">
-        <div class="tarjetaContV h-100">
-          <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 5 - Motocicleta.png" class="imgV">
-          </div>
-          <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Gsx-8R</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
         </div>
       </div>
-
-      <!--Vehículo 6-->
-      <div class="col">
-        <div class="tarjetaContV h-100">
-          <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 6 - Motocicleta.png" class="imgV">
-          </div>
-          <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Burgman Fi</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
-        </div>
+      } @empty {
+      <!-- Mensaje elegante de seguridad si la base de datos no tiene motocicletas aún -->
+      <div class="col-12 text-center py-5">
+        <p class="text-muted fs-5">No hay motocicletas disponibles en este momento.</p>
       </div>
-
-      <!--Vehículo 7-->
-      <div class="col">
-        <div class="tarjetaContV h-100">
-          <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 7 - Motocicleta.png" class="imgV">
-          </div>
-          <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Gsx-R150 Abs</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
-        </div>
-      </div>
+      }
 
     </div>
   </div>
 </section>
-

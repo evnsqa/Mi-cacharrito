@@ -8,9 +8,10 @@ import { VehiculoCamioneta } from './vehiculo-camioneta/vehiculo-camioneta';
 import { VehiculoMicrobus } from './vehiculo-microbus/vehiculo-microbus';
 import { VehiculoCampero } from './vehiculo-campero/vehiculo-campero';
 import { VehiculoMotocicleta } from './vehiculo-motocicleta/vehiculo-motocicleta';
+import { VehiculoComponenteAdmi } from './vehiculo-componente-admi/vehiculo-componente-admi';
 
 @Component({
-  imports: [RouterOutlet, Navegacion, Footer, InicioSesion, VehiculoComponente, VehiculoCamioneta, VehiculoMicrobus, VehiculoCampero, VehiculoMotocicleta],
+  imports: [RouterOutlet, Navegacion, Footer, InicioSesion, VehiculoComponente, VehiculoCamioneta, VehiculoMicrobus, VehiculoCampero, VehiculoMotocicleta, VehiculoComponenteAdmi],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

@@ -1,6 +1,9 @@
-body {
-    background-color: grey;
+:host {
+  display: block;            
+  background-color: #f4f4f4;  
+  min-height: 100vh;          
 }
+
 
 .tarjetaContV {
   background-color: white;

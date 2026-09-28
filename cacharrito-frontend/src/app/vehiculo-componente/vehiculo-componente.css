@@ -1,6 +1,117 @@
-body {
-    background-color: grey;
+:host {
+  display: block;            
+  background-color: #f4f4f4;  
+  min-height: 100vh;          
 }
+
+.tarjetaCarrito {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.encabezadoCarrito {
+  background-color: #255C7E;
+  color: #ffffff;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tituloCarrito {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.insigniaCarrito {
+  background-color: #ffffff;
+  color: #151515;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.cuerpoCarrito {
+  padding: 24px;
+}
+
+.listaCarrito {
+  list-style: none;
+  padding-left: 0;
+}
+
+.itemCarrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.itemCarrito:last-child {
+  border-bottom: none;
+}
+
+/* Detalles de cada item dentro del carrito */
+.nombreC {
+  font-size: 1rem;
+  color: #151515;
+}
+
+.colorC, .placaC {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-left: 6px;
+}
+
+.precioC {
+  color: #198754;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-left: 8px;
+}
+
+.btnQuitarCarrito {
+  background-color: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btnQuitarCarrito:hover {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+.contenedorBotonConfirmar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btnConfirmarAlquiler {
+  background-color: #255C7E;
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.btnConfirmarAlquiler:hover {
+  background-color: #1a435c;
+}
+
 
 .tarjetaContV {
   background-color: white;
@@ -66,3 +177,42 @@ body {
   background-color: rgb(128, 128, 128);
 }
 
+
+.modal-header {
+  background-color: #255C7E;
+  color: white;
+}
+
+.modal-header .btn-close {
+  filter: invert(1);
+}
+
+.modal-body {
+  color: #151515;
+}
+
+.btnModalAgregar {
+  background-color: #255C7E;
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+.btnModalAgregar:hover {
+  background-color: #1a435c;
+}
+
+.btnModalQuitar {
+  background-color: #ffc107;
+  color: #151515;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+.btnModalQuitar:hover {
+  background-color: #e0a800;
+}

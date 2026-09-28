@@ -1,102 +1,107 @@
-<title>Catálogo de Vehículos</title>
+@if (carrito.length > 0) {
+<div class="container-fluid px-4 px-md-5 pt-4">
+  <div class="tarjetaCarrito">
+    <div class="encabezadoCarrito">
+      <span class="tituloCarrito">Mi Lista de Alquiler</span>
+      <span class="insigniaCarrito">{{ carrito.length }} vehículo(s)</span>
+    </div>
+    <div class="cuerpoCarrito">
+      <ul class="listaCarrito mb-3">
+        @for (item of carrito; track item.placa) {
+        <li class="itemCarrito">
+          <div>
+            <strong class="nombreC">{{ item.nombre }}</strong>
+            <span class="colorC">(Placa: {{ item.color }})</span>
+            <span class="placaC">(Placa: {{ item.placa }})</span>
+            <span class="precioC">${{ item.precio | number }}/día</span>
+          </div>
+          <button type="button" class="btnQuitarCarrito" (click)="quitarCarrito(item.placa)">Quitar</button>
+        </li>
+        }
+      </ul>
+      <div class="contenedorBotonConfirmar">
+        <button type="button" class="btnConfirmarAlquiler" (click)="confirmarAlquiler()">Confirmar Alquiler</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+
 
 <section class="CatalogoV py-5">
   <div class="container-fluid px-4 px-md-5">
     <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
 
-      <!--Vehículo 2-->
+      @for (v of vehiculos; track v.placa) {
       <div class="col">
         <div class="tarjetaContV h-100">
           <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 2 - Automovil.png" class="imgV">
+            <img [src]="v.imagen ? v.imagen : '/recursos/vehiculo 1 - Automovil.png'" class="imgV">
           </div>
           <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Toyota Agya</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
-        </div>
-      </div>
 
-      <!--Vehículo 3-->
-      <div class="col">
-        <div class="tarjetaContV h-100">
-          <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 3 - Automovil.png" class="imgV">
-          </div>
-          <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Toyota Yaris</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
-          </div>
-        </div>
-      </div>
+            <h3 class="tituloV">{{ v.nombre }}</h3>
 
-      <!--Vehículo 4-->
-      <div class="col">
-        <div class="tarjetaContV h-100">
-          <div class="ContenedorImgV">
-            <img src="/recursos/vehiculo 4 - Automovil.png" class="imgV">
-          </div>
-          <div class="CuerpoTarjetaV">
-            <h3 class="tituloV">Gr Yaris</h3>
-            <button class="botonE" type="button">EXPLORAR</button>
+            <button class="botonE" type="button" data-bs-toggle="modal" data-bs-target="#modalDetalleVehiculo"
+              (click)="seleccionarVehiculo(v)">EXPLORAR
+            </button>
           </div>
         </div>
       </div>
+      }
 
     </div>
   </div>
 </section>
 
-
-
-
- <!--
-<div class="modal fade" id="modalDetalleVehiculo" tabindex="-1" aria-labelledby="modalDetalleVehiculoLabel" aria-hidden="true">
+<!--MODAL-->
+<div class="modal fade" id="modalDetalleVehiculo" tabindex="-1" aria-labelledby="modalDetalleVehiculoLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    
-    Se renderiza solo si hay un vehículo seleccionado (*ngIf) -->
-    <!--<div class="modal-content" *ngIf="vehiculoSeleccionado">-->
-      
-      <!-- Encabezado del Modal -->
-      
-      <!--
+
+    @if (vehiculoSeleccionado) {
+    <div class="modal-content">
+
       <div class="modal-header">
         <h5 class="modal-title fw-bold" id="modalDetalleVehiculoLabel">
-          {{ vehiculoSeleccionado.placa }}
+          {{ vehiculoSeleccionado.nombre }}
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div> -->
+      </div>
 
-
-      <!-- Cuerpo del Modal -->
-
-      <!--
       <div class="modal-body">
-        <p class="mb-2"><strong>Tipo:</strong> {{ vehiculoSeleccionado.tipo }}</p>
+        <p class="mb-2"><strong>Tipo de Vehículo:</strong> {{ vehiculoSeleccionado.tipoVehiculo.nombre }}</p>
         <p class="mb-2"><strong>Placa:</strong> {{ vehiculoSeleccionado.placa }}</p>
         <p class="mb-2"><strong>Color:</strong> {{ vehiculoSeleccionado.color }}</p>
-        <p class="mb-2"><strong>Valor Alquiler:</strong> {{ vehiculoSeleccionado.precio }}</p>
-        
+        <p class="mb-2"><strong>Precio Alquiler por Día:</strong> ${{ vehiculoSeleccionado.precio | number }}</p>
+
         <p class="mb-0">
-          <strong>Estado: </strong> -->
-          
-          <!-- Evaluamos la BANDERA (booleano) dinámicamente con [ngClass] y un operador ternario -->
-          <!--<span class="badge" [ngClass]="vehiculoSeleccionado.disponible ? 'bg-success' : 'bg-danger'">
-            {{ vehiculoSeleccionado.disponible ? 'Disponible' : 'No Disponible / Alquilado' }}
-          </span>
+          <strong>Estado: </strong>
+          @if (Bandera) {
+          <span class="badge bg-success">Disponible</span>
+          } @else {
+          <span class="badge bg-danger">No Disponible</span>
+          }
         </p>
-      </div> -->
+      </div>
 
-
-      <!-- Pie del Modal -->
-       
-      <!--
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+        @if (Bandera) {
+        @if (estaEnCarrito(vehiculoSeleccionado.placa)) {
+        <button type="button" class="btnModalQuitar" (click)="quitarCarrito(vehiculoSeleccionado.placa)">Quitar de la
+          lista</button>
+        } @else {
+        <button type="button" class="btnModalAgregar" (click)="agregarCarrito(vehiculoSeleccionado)">Añadir a mi
+          Lista</button>
+        }
+        }
       </div>
 
     </div>
+    }
+
   </div>
-  
 </div>
--->
