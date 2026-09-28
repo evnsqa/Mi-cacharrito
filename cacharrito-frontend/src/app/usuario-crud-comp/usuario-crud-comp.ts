@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UsuarioServicio } from '../servicios/usuario-servicio';
 import { Usuario } from '../entidades/usuario';
+import { RegistroUsuario } from '../registro-usuario/registro-usuario';
 
 @Component({
   imports: [],
@@ -14,11 +15,13 @@ export class UsuarioCrudComp implements OnInit {
   ngOnInit(): void {
     this.mostrarUsuarios()
   }
-  constructor(private servicioUsuario: UsuarioServicio, private cdr: ChangeDetectorRef){}
+  constructor(private servicioUsuario: UsuarioServicio, private registroComp: RegistroUsuario,
+     private cdr: ChangeDetectorRef){}
 
   listaU: Usuario[] = []
   busqueda: string = "";
   idU: string = "";
+  usuarioA: Usuario = new Usuario;
 
   mostrarUsuarios(){
     this.servicioUsuario.listarUsusarios().subscribe(dato =>{
@@ -27,6 +30,8 @@ export class UsuarioCrudComp implements OnInit {
       this.listaU = dato;
     })
   }
+  
+  }
 
   
-}
+
