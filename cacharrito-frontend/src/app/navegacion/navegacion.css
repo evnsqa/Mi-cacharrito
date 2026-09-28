@@ -10,7 +10,6 @@
     width: 100%;
     z-index: 1000;
 }
-<<<<<<< HEAD
 
 .botonRegistro {
     background-color: rgb(255, 255, 255);
@@ -20,7 +19,6 @@
     background-color: rgba(165, 42, 42, 0);
     color: rgb(255, 255, 255);
     border: hsl(0, 0%, 100%) solid 1px;
-=======
 .botonRegistro{
     background-color: #255C7E;
     color: black;
@@ -29,5 +27,4 @@
         background-color: rgba(165, 42, 42, 0);
         color: rgb(255, 255, 255);
         border: #255C7E solid 1px;
->>>>>>> d8f46aad16d2fc724dcd6a8d67d46f68a27f53de
 }
