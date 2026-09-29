@@ -10,11 +10,6 @@ import com.example.demo.modelo.TipoVehiculo;
 
 @Repository
 public interface tipoVehiculo extends JpaRepository<TipoVehiculo, Long> {
-    
-    
-    @Query(value = "SELECT * FROM tipo_vehiculo", nativeQuery = true)
-    public List<TipoVehiculo> listarTodos();
-
    
     @Query(value = "SELECT * FROM tipo_vehiculo WHERE nombre = :nombre", nativeQuery = true)
     public List<TipoVehiculo> findByNombre(@Param("nombre") String nombre);

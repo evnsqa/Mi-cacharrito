@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
 import { InicioComponente } from './inicio-componente/inicio-componente';
 import { InicioSesion } from './inicio-sesion/inicio-sesion';
-import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
 import { ContactoComponente } from './contacto-componente/contacto-componente';
+import { VehiculoComponente } from './vehiculo-componente/vehiculo-componente';
+// import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
+// import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
+import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
 import { RegistroUsuario } from './registro-usuario/registro-usuario';
-
 // import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
 // import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
 import { EntregaVehiculoComponente } from './entrega-vehiculo-componente/entrega-vehiculo-componente'
@@ -21,6 +23,14 @@ export const routes: Routes = [
     // { path: "tipos", component: TipoVehiculosComponent},
     { path: 'dashboardAdmin', component: DashboardAdminComponente},
     { path: 'EntregarVehiculo', component: EntregaVehiculoComponente},
-    
+    { path: "inicio", component: InicioComponente },
+    { path: "login", component: InicioSesion },
+    { path: "contacto", component: ContactoComponente },
+    { path: 'vehiculos-por/:tipo', component: VehiculoComponente },
+    // { path: "tipos", component: TipoVehiculosComponent},
+    // { path: "tipos", component: TipoVehiculosComponent},
+    { path: 'dashboardAdmin', component: DashboardAdminComponente },
+    { path: 'EntregarVehiculo', component: EntregaVehiculoComponente },
+    { path: "crudUsuario", component: UsuarioCrudComp }
 
 ];

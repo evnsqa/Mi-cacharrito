@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.imagen {
+    vertical-align: middle;
+    width: 100px;
+}
+
+.imagenV {
+    max-height: 60px;
+    object-fit: cover;
+}
+
+.imagenModal {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.imagenM {
+    max-height: 120px;
+    object-fit: cover;
+}
+
+.tituloM{
+    width: 100%;
+    text-align: center;
+}
