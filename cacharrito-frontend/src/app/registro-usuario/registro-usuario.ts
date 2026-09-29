@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Usuario } from '../entidades/usuario';
 import { UsuarioServicio } from '../servicios/usuario-servicio';
+import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
-  imports: [FormsModule],
+  imports: [FormsModule, Navegacion],
   selector: 'app-registro-usuario',
   styleUrl: './registro-usuario.css',
   templateUrl: './registro-usuario.html',

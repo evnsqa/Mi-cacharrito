@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, OnInit, signal } from '@angular/core';
 import { UsuarioServicio } from '../servicios/usuario-servicio';
 import { Usuario } from '../entidades/usuario';
-import { RegistroUsuario } from '../registro-usuario/registro-usuario';
+import { Navegacion } from '../navegacion/navegacion';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  imports: [],
+  imports: [Navegacion, FormsModule],
   selector: 'app-usuario-crud-comp',
   styleUrl: './usuario-crud-comp.css',
   templateUrl: './usuario-crud-comp.html',
@@ -15,22 +16,82 @@ export class UsuarioCrudComp implements OnInit {
   ngOnInit(): void {
     this.mostrarUsuarios()
   }
-  constructor(private servicioUsuario: UsuarioServicio, private registroComp: RegistroUsuario,
+  constructor(private servicioUsuario: UsuarioServicio,
      private cdr: ChangeDetectorRef){}
 
-  listaU: Usuario[] = []
+  listaU = signal<Usuario[]>([]);
   busqueda: string = "";
   idU: string = "";
   usuarioA: Usuario = new Usuario;
 
   mostrarUsuarios(){
     this.servicioUsuario.listarUsusarios().subscribe(dato =>{
+      this.listaU.set(dato);
       console.log(dato)
       this.cdr.markForCheck();
-      this.listaU = dato;
+      
     })
   }
+
+  eliminarU(cc: string){
+    this.servicioUsuario.eliminarUsuario(cc).subscribe(dato =>{
+      console.log(dato)
+      this.mostrarUsuarios()
+    })
+  }
+
+  actualizarUsuario(u: Usuario){
+    this.usuarioA = u;
+    this.abrirModal()
+  }
+  abrirModal(){
+      const modal = document.getElementById("registro")
+      if(modal!=null)
+        modal.style.display='block';
+    }
+
+    cerrarModal(){
+      this.usuarioA = new Usuario;
+      const modal = document.getElementById("registro")
+      if(modal!=null)
+        modal.style.display='none';
+    }
+
+    registrar() {
+    this.servicioUsuario.registroUsuario(this.usuarioA).subscribe({
+      next: (dato) => {
+        console.log(dato);
+        alert("Actualizacion exitosa");
+        
+      },
+      error: (err) => {
+        alert("Error al actualizar: " + err.error);
+        console.error(err);
+      }
+    });
+    this.cerrarModal()
+  }
   
+
+  paginaActual = signal(1);
+  itemsPorPagina = 1;
+
+  datosPaginados = computed(() => {
+    const inicio = (this.paginaActual() - 1) * this.itemsPorPagina;
+    const fin = inicio + this.itemsPorPagina;
+    return this.listaU().slice(inicio, fin);
+  });
+
+  totalPaginas = computed(() =>
+    Math.ceil(this.listaU().length / this.itemsPorPagina));
+
+  cambiarPagina(nuevaPagina: number) {
+    if (nuevaPagina >= 1 && nuevaPagina <= this.totalPaginas()) {
+      this.paginaActual.set(nuevaPagina);
+    }
+  }
+
+
   }
 
   

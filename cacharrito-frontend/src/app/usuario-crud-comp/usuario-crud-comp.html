@@ -1,3 +1,4 @@
+<app-navegacion></app-navegacion>
 <div class="container-fluid py-4">
   <div class="card shadow-sm border-0 rounded-3">
     <div class="card-body p-4">
@@ -15,8 +16,8 @@
             <option value="estado">Correo</option>
           </select>
         </div>
-        <button class="btn btn-primary text-white" href="/registro">
-          <i class="bi bi-plus-lg me-1"></i> Añadir Nuevo Usuario
+        <button class="btn btn-primary text-white">
+          <i class="bi bi-plus-lg me-1" href="/registro"></i> Añadir Nuevo Usuario
         </button>
       </div>
 
@@ -36,7 +37,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (i of listaU; track $index) {
+            @for(i of datosPaginados(); track $index) {
             <tr>
               <td>{{i.idUsuario}}</td>
               <td>{{i.nombreCompleto}}</td>
@@ -47,7 +48,7 @@
               <td>{{i.vigenciaLicencia}}</td>
               <td class="text-center">
                 <div class="d-flex justify-content-center gap-2">
-                  <button class="btn btn-success btn-sm text-white">
+                  <button class="btn btn-success btn-sm text-white" (click)="actualizarUsuario(i)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-pencil-square" viewBox="0 0 16 16">
                       <path
@@ -58,7 +59,7 @@
                   </button>
                   <button class="btn btn-danger btn-sm text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                      class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                      (click)="eliminarU(i.idUsuario)" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                       <path
                         d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
                     </svg>
@@ -69,26 +70,85 @@
             }
           </tbody>
         </table>
+         <br>
+        <div class="paginacion">
+          <button (click)="cambiarPagina(paginaActual() - 1)" [disabled]="paginaActual() === 1">
+            < </button>
+
+              <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
+
+              <button (click)="cambiarPagina(paginaActual() + 1)" [disabled]="paginaActual() === totalPaginas()">
+                >
+              </button>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-3">
+
       </div>
 
-      <!-- Paginación -->
-      <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-3">
-        <span class="text-muted small">Página 1 de 5</span>
-        <nav aria-label="Navegación de páginas">
-          <ul class="pagination pagination-sm mb-0">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1">
-                < Anterior </a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#"> Siguiente > </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
+      <div class="modal" tabindex="-1" id="registro">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="cerrarModal()"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label class="form-label">Identificación</label>
+                  <input type="text" class="form-control" [(ngModel)]="usuarioA.idUsuario" name="idUsuario">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Nombre</label>
+                  <input type="text" class="form-control" [(ngModel)]="usuarioA.nombreCompleto" name="nombreCompleto">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Correo Electronico</label>
+                  <input type="text" class="form-control" [(ngModel)]="usuarioA.correoElectronico"
+                    name="correoElectronico">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">telefono</label>
+                  <input type="text" class="form-control" [(ngModel)]="usuarioA.telefono" name="telefono">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Licencia</label>
+                  <select type="text" class="form-control" [(ngModel)]="usuarioA.categoriaLicencia"
+                    name="categoriaLicencia">
+                    <option selected disabled value="">Selecciona una categoría</option>
+                    <option value="A2">A2 (Motocicletas)</option>
+                    <option value="B1">B1 (Automóviles, camperos)</option>
+                    <option value="B2">B2 (Camiones, buses)</option>
+                    <option value="C1">C1 (Público - Automóviles)</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Fecha Expedicion</label>
+                  <input type="date" class="form-control" [(ngModel)]="usuarioA.fechaExpedicionLicencia"
+                    name="fechaExpedicionLicencia">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Fecha Vigencia</label>
+                  <input type="date" class="form-control" [(ngModel)]="usuarioA.vigenciaLicencia"
+                    name="vigenciaLicencia">
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarModal()">
+                    Cerrar</button>
+
+                  <button type="submit" class="btn btn-primary" (click)="registrar()">Guardar</button>
+
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>

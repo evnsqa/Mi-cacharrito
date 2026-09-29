@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.example.demo.modelo.Alquiler;
+import com.example.demo.modelo.Usuario;
 
 import jakarta.transaction.Transactional;
 
@@ -35,7 +36,11 @@ public interface alquileres extends JpaRepository<Alquiler, Long>{
 		@Query("UPDATE Alquiler a SET a.estado = 'disponible', a.valorTotal = a.valorTotal + :valorExtra WHERE a.numeroAlquiler = :id")
 		Integer devolverVehiculo(@Param("id") Long id, @Param("valorExtra") Double valorExtra);
 		
+<<<<<<< HEAD
 	
+=======
+		public List<Alquiler> findByUsuario (Usuario usuario);
+>>>>>>> 94f5ebb0281c0fb067a134087ef46d7b82f40642
 	}
 
 

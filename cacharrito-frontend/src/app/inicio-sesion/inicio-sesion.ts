@@ -22,7 +22,7 @@ export class InicioSesion {
       next: (dato) =>{
         console.log(dato)
         localStorage.setItem('usuarioSesion', JSON.stringify(dato));
-        this.router.navigate(['/registro']);
+        this.router.navigate(['/inicio']);
       },
       error: (err) =>{
         alert("error al iniciar: " + err.error)
