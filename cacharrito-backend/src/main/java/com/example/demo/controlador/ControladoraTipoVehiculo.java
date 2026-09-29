@@ -14,20 +14,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modelo.TipoVehiculo;
+import com.example.demo.modelo.Vehiculos;
 import com.example.demo.repositorio.tipoVehiculo;
 
 @RestController
 @RequestMapping("/tipovehiculo/t/")
+<<<<<<< HEAD
 @CrossOrigin(origins = "http://localhost:4200")
+=======
+@CrossOrigin(origins="http://localhost:4200/")
+>>>>>>> 9f216eb6b817b4cd8cf2f4de465e791d78c43bf7
 public class ControladoraTipoVehiculo {
 
     @Autowired
     private tipoVehiculo repotipoVehiculo;
 
-    @GetMapping("/listarTodo/")
-    public List<TipoVehiculo> listarTodo() {
-        return this.repotipoVehiculo.listarTodos();
-    }
+	@GetMapping("/listarTodo/")
+	public List<TipoVehiculo> mostrarTodos(){
+		return repotipoVehiculo.findAll();
+	}
 
     @PostMapping("/buscarNom/")
     public List<TipoVehiculo> buscarNom(@RequestParam("nombre") String nombre) {

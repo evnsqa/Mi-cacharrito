@@ -1,15 +1,42 @@
 import { Routes } from '@angular/router';
+import { InicioComponente } from './inicio-componente/inicio-componente';
 import { InicioSesion } from './inicio-sesion/inicio-sesion';
 import { ContactoComponente } from './contacto-componente/contacto-componente';
 import { CatalogoComponent } from './catalogo/catalogo';
 import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
 import { NoticiasComponent } from './noticias/noticias';
+import { VehiculoComponente } from './vehiculo-componente/vehiculo-componente';
+// import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
+// import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
+import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
+import { RegistroUsuario } from './registro-usuario/registro-usuario';
+// import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
+// import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
+import { EntregaVehiculoComponente } from './entrega-vehiculo-componente/entrega-vehiculo-componente'
+import { UsuarioCrudComp } from './usuario-crud-comp/usuario-crud-comp';
+
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+    { path: "inicio", component: InicioComponente},
     { path: "login", component: InicioSesion},
+    { path: "registro", component: RegistroUsuario},
     { path: "contacto", component: ContactoComponente},
     { path: "tipos", component: TipoVehiculosComponent},
     { path: "catalogo", component: CatalogoComponent},
-    { path: "noticias", component: NoticiasComponent}
+    { path: "noticias", component: NoticiasComponent},
+    { path: 'crud', component: UsuarioCrudComp},
+    // { path: "tipos", component: TipoVehiculosComponent},
+    { path: 'dashboardAdmin', component: DashboardAdminComponente},
+    { path: 'EntregarVehiculo', component: EntregaVehiculoComponente},
+    { path: "inicio", component: InicioComponente },
+    { path: "login", component: InicioSesion },
+    { path: "contacto", component: ContactoComponente },
+    { path: 'vehiculos-por/:tipo', component: VehiculoComponente },
+    // { path: "tipos", component: TipoVehiculosComponent},
+    // { path: "tipos", component: TipoVehiculosComponent},
+    { path: 'dashboardAdmin', component: DashboardAdminComponente },
+    { path: 'EntregarVehiculo', component: EntregaVehiculoComponente },
+    { path: "crudUsuario", component: UsuarioCrudComp }
+
 ];
