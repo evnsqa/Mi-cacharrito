@@ -7,9 +7,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*; 
+import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.modelo.Alquiler;
 import com.example.demo.modelo.Usuario;
+import com.example.demo.repositorio.alquileres;
 import com.example.demo.repositorio.usuario; 
 
 @RestController
@@ -19,17 +21,23 @@ public class ControladoraUsuario {
 
     @Autowired
     private usuario repoUsuario;
+    
+    @Autowired
+    private alquileres repoAlquiler;
 
 
-    @PostMapping("/registro")
-    public ResponseEntity<?> registrarUsuario(@RequestBody Usuario nuevoUsuario) {
-        if (repoUsuario.existsByIdUsuario(nuevoUsuario.getIdUsuario())) {
-            return new ResponseEntity<>("El número de identificación ya está registrado", HttpStatus.BAD_REQUEST);
-        }
-        
-        
-        Usuario usuarioGuardado = repoUsuario.save(nuevoUsuario);
-        return new ResponseEntity<>(usuarioGuardado, HttpStatus.CREATED);
+    @PostMapping("/registro") 
+    public ResponseEntity<?> guardarUsuario(@RequestBody Usuario usuario) {
+        if (usuario.getId() == null) {
+            if (repoUsuario.existsByIdUsuario(usuario.getIdUsuario())) {
+                return new ResponseEntity<>("El número de identificación ya está registrado", HttpStatus.BAD_REQUEST);
+            }
+            if (repoUsuario.existsByCorreoElectronico(usuario.getCorreoElectronico())) {
+                return new ResponseEntity<>("El correo electrónico ya está registrado", HttpStatus.BAD_REQUEST);
+            }
+        } 
+        Usuario usuarioGuardado = repoUsuario.save(usuario);
+        return new ResponseEntity<>(usuarioGuardado, HttpStatus.OK);
     }
 
     @PostMapping("/login")
@@ -64,4 +72,17 @@ public class ControladoraUsuario {
     }
     
     
+    @PostMapping("/eliminarUsuario/")
+    public Optional<Usuario> eliminarUsuario(@RequestBody String idUsuario) {
+        Usuario u = this.repoUsuario.findByIdUsuario(idUsuario).get();
+        
+        List<Alquiler> a = this.repoAlquiler.findByUsuario(u);
+        for(int i=0 ; i<a.size() ;i++) {
+            this.repoAlquiler.deleteById(a.get(i).getNumeroAlquiler()); 
+        }
+                this.repoUsuario.deleteById(u.getId());
+        return Optional.empty();
+    }
+  
+       
 }

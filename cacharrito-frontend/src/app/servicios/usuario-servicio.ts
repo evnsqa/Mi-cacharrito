@@ -14,6 +14,7 @@ export class UsuarioServicio {
     private loginU = "http://localhost:8080/api/usuarios/login"
     private registroU = "http://localhost:8080/api/usuarios/registro"
     private buscarNombre = "http://localhost:8080/api/usuarios/nombreCompleto"
+    private eliminarU = "http://localhost:8080/api/usuarios/eliminarUsuario/"
 
 
     listarUsusarios(): Observable<any>{
@@ -32,5 +33,9 @@ export class UsuarioServicio {
     buscarNombreC(nombre: string): Observable<any>{
         const params = new HttpParams().set("nombre", nombre)
         return this.httpCliente.get(`${this.buscarNombre}`, {params: params})
+    }
+
+    eliminarUsuario(id: string){
+        return  this.httpCliente.post(`${this.eliminarU}`, id)
     }
 }

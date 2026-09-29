@@ -30,9 +30,10 @@ export class AlquilerComponente implements OnInit {
       this.nuevoAlquiler.usuario = JSON.parse(usuarioString);
     } else {
       alert("Debes iniciar sesión para alquilar un vehículo");
-      this.router.navigate(['/']); // Cambia la ruta si tu login es diferente (ej. '/login')
+      this.router.navigate(['/']); 
     }
   }
+
 
   aceptarAlquiler() {
     this.nuevoAlquiler.valorTotal = 0; 
@@ -50,6 +51,8 @@ export class AlquilerComponente implements OnInit {
       }
     });
   }
+
+    
 
   generarPDF(alquilerGuardado: any) {
   
