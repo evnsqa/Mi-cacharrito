@@ -17,7 +17,7 @@ import com.example.demo.modelo.TipoVehiculo;
 import com.example.demo.repositorio.tipoVehiculo;
 
 @RestController
-@RequestMapping("/tipovehiculo/")
+@RequestMapping("/tipovehiculo/t/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ControladoraTipoVehiculo {
 
