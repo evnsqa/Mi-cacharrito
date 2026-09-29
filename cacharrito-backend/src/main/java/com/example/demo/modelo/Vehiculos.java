@@ -1,9 +1,13 @@
 package com.example.demo.modelo;
 
+import java.util.List;
+import java.util.Optional;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -14,6 +18,9 @@ public class Vehiculos {
 	@Id
 	@Column (name="placa", nullable=false)
 	private String placa;
+	
+	@Column (name="nombre") 
+	private String nombre;
 
 	@Column (name="color") 
 	private String color;
@@ -28,14 +35,19 @@ public class Vehiculos {
 	@JoinColumn (name = "id_tipo_vehiculo", referencedColumnName="id_tipo_vehiculo")
 	private TipoVehiculo tipoVehiculo;
 	
+	@Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String imagen;
 
-	public Vehiculos(String placa, String color, Double precio, String estado, TipoVehiculo tipoVehiculo) {
+	public Vehiculos(String placa, String nombre, String color, Double precio, String estado, TipoVehiculo tipoVehiculo, String imagen) {
 		super();
 		this.placa = placa;
+		this.nombre = nombre;
 		this.color = color;
 		this.precio = precio;
 		this.estado = estado;
 		this.tipoVehiculo = tipoVehiculo;
+		this.imagen = imagen;
 	}
 
 	public Vehiculos() {
@@ -48,6 +60,14 @@ public class Vehiculos {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getColor() {
@@ -82,6 +102,15 @@ public class Vehiculos {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 	
-	
+	public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+
+
 	
 }
