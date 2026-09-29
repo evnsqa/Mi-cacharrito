@@ -7,8 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*; 
+import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.modelo.Alquiler;
 import com.example.demo.modelo.Usuario;
 import com.example.demo.repositorio.usuario; 
 
@@ -19,6 +20,9 @@ public class ControladoraUsuario {
 
     @Autowired
     private usuario repoUsuario;
+    
+    @Autowired
+    private 
 
 
     @PostMapping("/registro")
@@ -61,6 +65,22 @@ public class ControladoraUsuario {
     public List<Usuario> categoriaLicencia(@RequestParam("categoria") String categoriaLicencia) {
         return repoUsuario.findByCategoriaLicencia(categoriaLicencia);
     }
+    
+    /*
+    @PostMapping("/eliminarUsuario/")
+    public Optional<Usuario> eliminarUsuario(@RequestBody Long idUsuario) {
+        Usuario u = this.repoUsuario.findById(idUsuario).get();
+        
+   
+        List<Alquiler> a = this.repoAlquiler.findByUsuario(u);
+        
+        for(int i=0 ; i<a.size() ;i++) {
+            this.repoAlquiler.deleteById(a.get(i).getNumeroAlquiler()); 
+        }
+                this.repoUsuario.deleteById(idUsuario);
+        return Optional.empty();
+    }
+    */
     
     
 }
