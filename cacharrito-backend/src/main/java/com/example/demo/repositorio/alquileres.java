@@ -17,6 +17,9 @@ public interface alquileres extends JpaRepository<Alquiler, Long>{
 
 		@Query("SELECT a FROM Alquiler a WHERE a.estado = 'pendiente de entrega'")
 		List<Alquiler> alquileresPendientes();
+		
+		@Query("SELECT a FROM Alquiler a WHERE a.usuario.id = :idUsuario AND a.estado = 'pendiente de entrega'")
+		List<Alquiler> alquileresPorUsuario(@Param("idUsuario") Long idUsuario);
 
 		@Modifying
 		@Transactional
@@ -33,7 +36,11 @@ public interface alquileres extends JpaRepository<Alquiler, Long>{
 		@Query("UPDATE Alquiler a SET a.estado = 'disponible', a.valorTotal = a.valorTotal + :valorExtra WHERE a.numeroAlquiler = :id")
 		Integer devolverVehiculo(@Param("id") Long id, @Param("valorExtra") Double valorExtra);
 		
+<<<<<<< HEAD
+	
+=======
 		public List<Alquiler> findByUsuario (Usuario usuario);
+>>>>>>> 94f5ebb0281c0fb067a134087ef46d7b82f40642
 	}
 
 
