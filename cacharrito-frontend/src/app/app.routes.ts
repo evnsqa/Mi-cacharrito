@@ -4,13 +4,11 @@ import { InicioSesion } from './inicio-sesion/inicio-sesion';
 import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
 import { ContactoComponente } from './contacto-componente/contacto-componente';
 import { RegistroUsuario } from './registro-usuario/registro-usuario';
-import { ContactoComponente } from './contacto-componente/contacto-componente';
+import { AdministradorComponente } from './administrador-componente/administrador-componente';
 import { UsuarioCrudComp } from './usuario-crud-comp/usuario-crud-comp';
-// import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
+import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
 // import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
-
-import { EntregaVehiculoComponente } from './entrega-vehiculo-componente/entrega-vehiculo-componente';
-import { RegistroUsuario } from './registro-usuario/registro-usuario';
+import { EntregarVehiculoComponente } from './entrega-vehiculo-componente/entrega-vehiculo-componente';
 
 
 export const routes: Routes = [
@@ -19,9 +17,10 @@ export const routes: Routes = [
     { path: "login", component: InicioSesion},
     { path: "registro", component: RegistroUsuario},
     { path: "contacto", component: ContactoComponente},
+    { path: "ADMINISTRADOR", component: AdministradorComponente},
     // { path: "tipos", component: TipoVehiculosComponent},
     { path: 'dashboardAdmin', component: DashboardAdminComponente},
-    { path: 'EntregarVehiculo', component: EntregaVehiculoComponente},
-   {path: "crudUsuario", component: UsuarioCrudComp}
+    { path: 'EntregarVehiculo', component: EntregarVehiculoComponente},
+    {path: "crudUsuario", component: UsuarioCrudComp}
 
 ];
