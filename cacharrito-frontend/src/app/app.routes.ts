@@ -2,6 +2,9 @@ import { Routes } from '@angular/router';
 import { InicioComponente } from './inicio-componente/inicio-componente';
 import { InicioSesion } from './inicio-sesion/inicio-sesion';
 import { ContactoComponente } from './contacto-componente/contacto-componente';
+import { CatalogoComponent } from './catalogo/catalogo';
+import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
+import { NoticiasComponent } from './noticias/noticias';
 import { VehiculoComponente } from './vehiculo-componente/vehiculo-componente';
 // import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
 // import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
@@ -19,7 +22,10 @@ export const routes: Routes = [
     { path: "login", component: InicioSesion},
     { path: "registro", component: RegistroUsuario},
     { path: "contacto", component: ContactoComponente},
-    {path: 'crud', component: UsuarioCrudComp},
+    { path: "tipos", component: TipoVehiculosComponent},
+    { path: "catalogo", component: CatalogoComponent},
+    { path: "noticias", component: NoticiasComponent},
+    { path: 'crud', component: UsuarioCrudComp},
     // { path: "tipos", component: TipoVehiculosComponent},
     { path: 'dashboardAdmin', component: DashboardAdminComponente},
     { path: 'EntregarVehiculo', component: EntregaVehiculoComponente},

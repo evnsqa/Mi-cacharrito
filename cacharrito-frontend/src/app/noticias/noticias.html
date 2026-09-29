@@ -1,0 +1,88 @@
+<div class="container-fluid py-4 bg-light">
+  
+  <div class="row mb-5 mx-2">
+    <div class="col-12 hero-banner rounded-4 shadow-sm p-5 text-white d-flex flex-column justify-content-center">
+      <span class="badge bg-primary fs-6 w-auto align-self-start mb-3 px-3 py-2">BLOG</span>
+      <h1 class="fw-bold display-5">Noticias y Novedades<br>del Mundo Vehicular</h1>
+      <p class="fs-5 mt-2 w-50 texto-hero">Mantente al día con las últimas noticias, consejos y tendencias del sector automotriz. ¡Aquí encontrarás todo lo que necesitas saber!</p>
+    </div>
+  </div>
+
+  <div class="row mx-2">
+    
+    
+    <div class="col-lg-8">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-dark"><i class="bi bi-newspaper me-2 text-primary"></i>Últimas Noticias</h3>
+        <a href="#" class="text-decoration-none text-primary fw-bold">Ver todas las noticias →</a>
+      </div>
+
+      <div class="row g-4">
+       
+        <div class="col-md-6" *ngFor="let noticia of noticiasVisibles">
+          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden tarjeta-noticia">
+         
+            <div class="position-relative">
+              <img [src]="noticia.imagen" class="card-img-top imagen-noticia" alt="Imagen noticia">
+              <span class="badge {{noticia.colorBadge}} position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill">
+                <i class="bi {{noticia.icono}} me-1"></i> {{noticia.categoria}}
+              </span>
+            </div>
+            
+            <div class="card-body p-4 d-flex flex-column">
+              <h5 class="card-title fw-bold" style="color: #0f172a;">{{noticia.titulo}}</h5>
+              <p class="card-text text-muted small mt-2 flex-grow-1">{{noticia.resumen}}</p>
+              
+              <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top text-muted small">
+                <span><i class="bi bi-calendar3 me-1"></i> {{noticia.fecha}}</span>
+                <span><i class="bi bi-clock me-1"></i> {{noticia.tiempo}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-12" *ngIf="noticiasVisibles.length === 0">
+          <div class="alert alert-info text-center py-5 rounded-4">
+            <i class="bi bi-info-circle display-4 d-block mb-3"></i>
+            No hay noticias publicadas en esta categoría aún.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+   
+    <div class="col-lg-4 mt-5 mt-lg-0">
+      
+    
+      <div class="card border-0 shadow-sm rounded-4 p-3 mb-4">
+        <div class="input-group">
+          <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-search text-muted"></i></span>
+          <input type="text" class="form-control border-start-0 ps-0" placeholder="Buscar noticias...">
+        </div>
+      </div>
+
+     
+      <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+        <h5 class="fw-bold mb-4" style="color: #0f172a;"><i class="bi bi-grid-3x3-gap-fill text-primary me-2"></i>Categorías</h5>
+        
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-2 categoria-item" 
+              *ngFor="let cat of categorias" 
+              (click)="filtrarCategoria(cat.nombre)"
+              [class.texto-activo]="categoriaActiva === cat.nombre">
+            
+            <span>
+              <i class="bi {{cat.icono}} me-2" [class.text-primary]="categoriaActiva === cat.nombre"></i> 
+              <span class="fw-semibold">{{cat.nombre}}</span>
+            </span>
+            <span class="badge bg-light text-primary rounded-pill">{{cat.cantidad}}</span>
+            
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
