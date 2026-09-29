@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modelo.TipoVehiculo;
-import com.example.demo.modelo.Vehiculos;
 import com.example.demo.repositorio.tipoVehiculo;
 
 @RestController
 @RequestMapping("/tipovehiculo/t/")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200/")
+
 public class ControladoraTipoVehiculo {
 
     @Autowired
@@ -35,20 +35,13 @@ public class ControladoraTipoVehiculo {
         return this.repotipoVehiculo.findByNombre(nombre);
     }
 
-   
     @PostMapping("/buscarId/")
     public TipoVehiculo buscarId(@RequestParam("id") Long id) {
-        return this.repotipoVehiculo.buscarPorId(id);
+        return repotipoVehiculo.findById(id).get();
     }
-    
+
     @PostMapping("/guardarTipoVehiculo/")
     public ResponseEntity<TipoVehiculo> guardar(@RequestBody TipoVehiculo t) {
-        repotipoVehiculo.save(t);
-        return ResponseEntity.ok(t);
-    }
-    
-    @PostMapping("/modificarTipoVehiculo/")
-    public ResponseEntity<TipoVehiculo> modificar(@RequestBody TipoVehiculo t) {
         repotipoVehiculo.save(t);
         return ResponseEntity.ok(t);
     }
