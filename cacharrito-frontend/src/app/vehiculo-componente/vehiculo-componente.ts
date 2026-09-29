@@ -32,19 +32,14 @@ export class VehiculoComponente implements OnInit {
   constructor(private servicioVehiculo: VehiculoServicio, private cdr: ChangeDetectorRef) { }
 
   cargarVehiculosPorTipo(tipo: string) {
-    this.servicioVehiculo.listarVehiculo().subscribe({
+    this.servicioVehiculo.buscarPorTipoEstado(tipo).subscribe({
       next: (dato) => {
-        console.log(`Catálogo completo recibido. Filtrando por: ${tipo}`);
-
-        const filtrados = dato.filter((v: any) =>
-          v.tipoVehiculo?.nombre?.trim().toLowerCase() === tipo.trim().toLowerCase()
-        );
-
-        this.listaVehiculos.set(filtrados);
+        console.log('Vehiculos disponibles recibidos:', dato);
+        this.listaVehiculos.set(dato);
         this.cdr.markForCheck();
       },
       error: (err) => {
-        console.error('Error al cargar el listado de vehículos:', err);
+        console.error('Error al cargar vehiculos disponibles:', err);
       }
     });
   }

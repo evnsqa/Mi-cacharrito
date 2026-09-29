@@ -52,6 +52,12 @@ public class ControladoraVehiculo {
 	public List<Vehiculos> buscarPorTipo(@RequestParam("nombre") String nombre) {
 	    return this.repoVehiculo.findByTipoVehiculoNombre(nombre);
 	}
+	
+	@PostMapping("/buscarPorTipoEstado/")
+	public List<Vehiculos> buscarPorTipoEstado(@RequestParam("nombreTipo") String nombreTipo) {
+	    return this.repoVehiculo.buscarVehiculosDisponiblesPorTipo(nombreTipo);
+	}
+
 
 	@GetMapping("/listarTodo/")
 	public List<Vehiculos> mostrarTodos(){
