@@ -34,6 +34,7 @@ export class AlquilerComponente implements OnInit {
     }
   }
 
+
   aceptarAlquiler() {
     this.nuevoAlquiler.valorTotal = 0; 
 
@@ -50,6 +51,8 @@ export class AlquilerComponente implements OnInit {
       }
     });
   }
+
+    
 
   generarPDF(alquilerGuardado: any) {
   
