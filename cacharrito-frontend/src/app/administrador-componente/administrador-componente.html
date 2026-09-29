@@ -1,2 +1,71 @@
-<h1>PAGUNA ADMIN</h1>
-<p>administrador-componente works!</p>
+<app-navegacion></app-navegacion>
+
+<div class="login-admin">
+
+  <div class="login-tarjeta">
+    <div class="login-formulario">
+      <div class="form-contenido">
+        <div class="encabezado-login">
+
+          <h1>Bienvenido</h1>
+
+          <p>
+            Ingrese sus credenciales para continuar
+          </p>
+
+        </div>
+
+
+        <form (ngSubmit)="iniciarSesion()">
+          <div class="campo">
+            <label for="identificacion">Usuario</label>
+
+            <input type="text" id="identificacion" name="usuarioLogin" [(ngModel)]="usuarioLogin" placeholder="Ingrese su usuario" autocomplete="username" required>
+          </div>
+
+          <div class="campo">
+
+            <label for="password">Contraseña</label>
+
+            <input type="password" id="password" name="passwordLogin" [(ngModel)]="passwordLogin" placeholder="Ingrese su contraseña" autocomplete="current-password" required>
+          </div>
+
+          <div class="recordar">
+            <label class="checkbox-container">
+              <input type="checkbox" id="recordarme">
+              <span class="checkmark"></span>
+              <span>Recordar mis datos</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-iniciar">Iniciar sesión</button>
+
+          <div class="recuperar">
+            <a href="#">
+              ¿Olvidó su contraseña?
+            </a>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <div class="login-imagen">
+      <div class="imagen-contenido">
+
+        <div class="marca">MI CACHARRITO</div>
+
+        <h2>Sección Administración</h2>
+
+        <p>Acceda al panel administrativo de Mi Cacharrito y gestione la información</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

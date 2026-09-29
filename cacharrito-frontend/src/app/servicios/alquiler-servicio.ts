@@ -10,34 +10,48 @@ export class AlquilerServicio {
     
     constructor(private httpCliente: HttpClient) {}
 
+    private guardar = "http://localhost:8080/alquileres/guardarAlquiler/";
+    private listarPorUsuario = "http://localhost:8080/alquileres/listarPorUsuario/";
+    private cancelar = "http://localhost:8080/alquileres/cancelarAlquiler/";
+    private listarPendientes = "http://localhost:8080/alquileres/listarPendientes/";
+    private entregar = "http://localhost:8080/alquileres/entregarVehiculo/";
+    private devolver = "http://localhost:8080/alquileres/devolverVehiculo/";
 
-    private guardarA = "http://localhost:8080/alquileres/guardarAlquiler/"
-    private cancelarA = "http://localhost:8080/alquileres/cancelarAlquiler/"
-    private listarP = "http://localhost:8080/alquileres/listarPendientes/"
-    private entregarV = "http://localhost:8080/alquileres/entregarVehiculo/"
-    private devolverV = "http://localhost:8080/alquileres/devolverVehiculo/"
-
-
-    guardarAlquiler(alquiler: Alquileres): Observable<any>{
-        return this.httpCliente.post(`${this.guardarA}`, alquiler)
+    guardarAlquiler(alquiler: Alquileres): Observable<any> {
+        return this.httpCliente.post(this.guardar, alquiler);
     }
 
-    cancelarAlquiler(id: number): Observable<any>{
-        const params = new HttpParams().set("id", id)
-        return this.httpCliente.post(`${this.cancelarA}`, null, {params: params})
+    listarAlquileresPorUsuario(idUsuario: number): Observable<any> {
+    const params = new HttpParams().set("idUsuario", idUsuario);
+    return this.httpCliente.get(this.listarPorUsuario, { params: params });
+}
+
+    cancelarAlquiler(id: number): Observable<any> {
+    const params = new HttpParams().set("id", id);
+    return this.httpCliente.post(this.cancelar, null, { params: params });
     }
 
-    listarPendientes(): Observable<any>{
-        return this.httpCliente.get(`${this.listarP}`)
+    listarAlquileresPendientes(): Observable<any> {
+    return this.httpCliente.get(this.listarPendientes);
     }
 
-    entregarVehiculo(placa: string): Observable<any>{
-        const params = new HttpParams().set("placa", placa)
-        return this.httpCliente.post(`${this.entregarV}`, null, {params: params})
+    entregarVehiculo(placa: string): Observable<any> {
+    const params = new HttpParams().set("placa", placa);
+    return this.httpCliente.post(this.entregar, null, { params: params });
     }
 
-    devolverVehiculo(id: number, valorExtra: number): Observable<any>{
-        const params = new HttpParams().set("id", id).set("valorExtra", valorExtra)
-        return this.httpCliente.post(`${this.devolverV}`, null, {params: params})
+    devolverVehiculo(id: number, valorExtra: number): Observable<any> {
+    const params = new HttpParams()
+        .set("id", id)
+        .set("valorExtra", valorExtra);
+
+    return this.httpCliente.post(this.devolver, null, { params: params });
     }
 }
+
+
+
+
+
+
+
