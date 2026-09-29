@@ -12,24 +12,22 @@ import jakarta.persistence.Table;
 public class TipoVehiculo {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue (strategy = GenerationType. SEQUENCE)
     @Column (name ="id_tipo_vehiculo")
     private Long idTipoVehiculo;
-    
-    @Column (name = "nombre", length = 100, nullable = false)
-    private String nombre;
-    
+
+	@Column (name="nombre", length=50, nullable=false)
+	private String nombre;
   
 
 	public TipoVehiculo(Long idTipoVehiculo, String nombre, String descripcion) {
 		
 		this.idTipoVehiculo = idTipoVehiculo;
-		this.nombre = nombre;
-		
+		this.nombre = nombre;	
 	}
 
 	public TipoVehiculo() {
-		
+		super();
 	}
 
 	public Long getIdTipoVehiculo() {
