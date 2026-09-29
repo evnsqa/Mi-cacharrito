@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Vehiculo } from '../entidades/vehiculo';
 import { VehiculoServicio } from '../servicios/vehiculo-servicio';
+import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   imports: [CommonModule],
@@ -10,61 +13,70 @@ import { VehiculoServicio } from '../servicios/vehiculo-servicio';
   templateUrl: './vehiculo-componente.html',
 })
 export class VehiculoComponente implements OnInit {
-
-  vehiculos: Vehiculo[] = [];
+  listaVehiculos = signal<Vehiculo[]>([]);
   vehiculoSeleccionado: Vehiculo | null = null;
-  Bandera: boolean = false;
-  carrito: Vehiculo[] = [];
 
-  constructor(private servicioVehiculo: VehiculoServicio) { }
+  private dataService = inject(EnviarDatoServicio);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.obtenerVehiculos();
-  }
-
-  obtenerVehiculos(): void {
-    this.servicioVehiculo.listarVehiculos().subscribe({
-      next: (datos) => {
-        this.vehiculos = datos;
-      },
-      error: (err) => {
-        console.error('Error al obtener los vehículos de la base de datos:', err);
+    this.route.paramMap.subscribe(params => {
+      const tipoVehiculo = params.get('tipo');
+      if (tipoVehiculo) {
+        this.cargarVehiculosPorTipo(tipoVehiculo);
       }
     });
   }
 
-  seleccionarVehiculo(vehiculo: Vehiculo) {
-    this.vehiculoSeleccionado = vehiculo;
-    this.Bandera = (vehiculo.estado === 'Disponible');
+  constructor(private servicioVehiculo: VehiculoServicio, private cdr: ChangeDetectorRef) { }
+
+  cargarVehiculosPorTipo(tipo: string) {
+    this.servicioVehiculo.listarVehiculo().subscribe({
+      next: (dato) => {
+        console.log(`Catálogo completo recibido. Filtrando por: ${tipo}`);
+
+        const filtrados = dato.filter((v: any) =>
+          v.tipoVehiculo?.nombre?.trim().toLowerCase() === tipo.trim().toLowerCase()
+        );
+
+        this.listaVehiculos.set(filtrados);
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error al cargar el listado de vehículos:', err);
+      }
+    });
   }
 
-  agregarCarrito(vehiculo: Vehiculo) {
-    if (!this.estaEnCarrito(vehiculo.placa)) {
-      this.carrito.push(vehiculo);
+  explorarVehiculo(v: Vehiculo) {
+    this.vehiculoSeleccionado = v;
+    this.cdr.markForCheck();
+    setTimeout(() => {
+      this.abrirModal();
+    }, 10);
+  }
+
+  abrirModal() {
+    const modal = document.getElementById("explorador");
+    if (modal != null) {
+      modal.style.display = 'block';
     }
   }
 
-  quitarCarrito(placa: string) {
-    this.carrito = this.carrito.filter(dato => dato.placa !== placa);
+  cerrarModal() {
+    const modal = document.getElementById("explorador");
+    if (modal != null) {
+      modal.style.display = 'none';
+    }
+    this.vehiculoSeleccionado = null;
   }
 
-  estaEnCarrito(placa: string) {
-    return this.carrito.some(dato => dato.placa === placa);
-  }
-
-  confirmarAlquiler() {
-    this.carrito.forEach(vehiculo => {
-      vehiculo.estado = 'No Disponible';
-      this.servicioVehiculo.guardarVehiculo(vehiculo).subscribe({
-        next: (respuesta) => {
-          console.log(`Vehículo ${vehiculo.placa} actualizado en MySQL:`, respuesta);
-        },
-        error: (error) => console.error('Error al guardar alquiler:', error)
-      });
-    });
-
-    alert('¡Tu alquiler ha sido confirmado exitosamente!');
-    this.carrito = [];
-    this.obtenerVehiculos();
+  enviarSeleccionado(v: Vehiculo) {
+    console.log(v);
+    this.dataService.enviar(v);
+    alert(`Vehiculo "${v.nombre}" seleccionado correctamente.`);
+    this.cerrarModal();
+    this.router.navigate(['/AlquilerComponente']);
   }
 }

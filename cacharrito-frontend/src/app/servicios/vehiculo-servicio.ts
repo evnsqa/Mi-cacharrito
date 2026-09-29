@@ -10,21 +10,29 @@ export class VehiculoServicio {
 
     constructor(private httpCliente: HttpClient){}
     private listaV='http://localhost:8080/vehiculo/v/listarTodo/';
+    private listaT='http://localhost:8080/tipovehiculo/t/listarTodo/';
     private guardarV='http://localhost:8080/vehiculo/v/guardarVehiculo/';
     private eliminarV='http://localhost:8080/vehiculo/v/eliminarVehiculo/';
     private buscarP='http://localhost:8080/vehiculo/v/buscarPlaca/';   
     private buscarN='http://localhost:8080/vehiculo/v/buscarNom/'; 
     private buscarPr='http://localhost:8080/vehiculo/v/buscarPrecio/'; 
     private buscarE='http://localhost:8080/vehiculo/v/buscarEstado/'; 
+    private buscarT='http://localhost:8080/vehiculo/v/buscarPorTipo/';
 
 
-    listarVehiculos(): Observable<any>{
+    listarVehiculo(): Observable<any>{
         return this.httpCliente.get(this.listaV);
     }
 
-    guardarVehiculo(vehiculo: Vehiculo): Observable<any>{
-        return this.httpCliente.post(`${this.guardarV}`,vehiculo);
+    listarTipoVehiculos(): Observable<any>{
+        return this.httpCliente.get(this.listaT);
     }
+
+
+    guardarVehiculo(vehiculo: Vehiculo, placaOriginal: string): Observable<any>{
+        return this.httpCliente.post(`${this.guardarV}?placaOriginal=${placaOriginal}`, vehiculo);
+    }
+
 
     eliminarVehiculo(placa: string) : Observable<any> {
         return this.httpCliente.post(`${this.eliminarV}`,placa);
@@ -47,5 +55,10 @@ export class VehiculoServicio {
     buscarEstado(estado: string): Observable<Vehiculo[]> {
         const params = new HttpParams().set('estado', estado);
         return this.httpCliente.post<Vehiculo[]>(this.buscarE, null, { params });
+    }
+
+    buscarTipo(nombre: string): Observable<Vehiculo[]> {
+        const params = new HttpParams().set('nombre', nombre);
+        return this.httpCliente.post<Vehiculo[]>(this.buscarT, null, { params });
     }
 }

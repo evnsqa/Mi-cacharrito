@@ -1,44 +1,70 @@
-<title>Catálogo de Vehículos</title>
+<title>Catalogo de Vehiculos</title>
 
 <section class="CatalogoV py-5">
   <div class="container-fluid px-4 px-md-5">
     <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
 
-      <!-- CICLO DINÁMICO: Recorre la Signal listaMotos() y genera una columna por cada moto -->
-      @for(moto of listaMotos(); track moto.placa) {
+      @for(moto of listaMotos(); track $index) {
       <div class="col">
         <div class="tarjetaContV h-100">
 
-          <!-- Contenedor de la Imagen dinámica -->
           <div class="ContenedorImgV">
             @if(moto.imagen) {
-            <!-- Si el administrador le subió una foto en Base64, la renderiza aquí -->
-            <img [src]="moto.imagen" [alt]="moto.nombre" class="imgV">
+            <img [src]="moto.imagen" class="imgV">
             } @else {
-            <!-- Imagen placeholder o texto de seguridad si el auto no tiene foto cargada -->
             <span class="text-muted small">Sin imagen</span>
             }
           </div>
 
-          <!-- Cuerpo de la Tarjeta con los datos dinámicos -->
           <div class="CuerpoTarjetaV">
             <h3 class="tituloV">{{ moto.nombre }}</h3>
 
-            <!-- Al hacer clic, enviamos su identificador único (la placa) a la función explorar -->
-            <button class="botonE" type="button" (click)="explorarVehiculo(moto.placa)">
-              EXPLORAR
-            </button>
+            <button class="botonE" type="button" (click)="explorarVehiculo(moto)">EXPLORAR</button>
           </div>
 
         </div>
-      </div>
-      } @empty {
-      <!-- Mensaje elegante de seguridad si la base de datos no tiene motocicletas aún -->
-      <div class="col-12 text-center py-5">
-        <p class="text-muted fs-5">No hay motocicletas disponibles en este momento.</p>
       </div>
       }
 
     </div>
   </div>
 </section>
+
+
+@if (motoSeleccionada) {
+<div class="modal" tabindex="-1" id="explorador">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title tituloM">INFORMACIÓN</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="cerrarModal()"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="mb-3">
+          <p><strong>PLACA:</strong> {{ motoSeleccionada.placa }}</p>
+        </div>
+        <div class="mb-3">
+          <p><strong>NOMBRE:</strong> {{ motoSeleccionada.nombre }}</p>
+        </div>
+        <div class="mb-3">
+          <p><strong>COLOR:</strong> {{ motoSeleccionada.color }}</p>
+        </div>
+        <div class="mb-3">
+          <p><strong>PRECIO:</strong> {{ motoSeleccionada.precio }}</p>
+        </div>
+        <div class="mb-3">
+          <p><strong>ESTADO:</strong> {{ motoSeleccionada.estado }}</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="cerrarModal()">Cerrar</button>
+            <button class="btn btn-primary" (click)="enviarSeleccionado(motoSeleccionada)">Seleccionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

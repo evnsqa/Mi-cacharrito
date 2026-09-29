@@ -47,6 +47,11 @@ public class ControladoraVehiculo {
 	public List<Vehiculos> buscarEstado(@RequestParam("estado")String estado) {
 		   return this.repoVehiculo.findByEstado(estado);
 	}
+	
+	@PostMapping("/buscarPorTipo/")
+	public List<Vehiculos> buscarPorTipo(@RequestParam("nombre") String nombre) {
+	    return this.repoVehiculo.findByTipoVehiculoNombre(nombre);
+	}
 
 	@GetMapping("/listarTodo/")
 	public List<Vehiculos> mostrarTodos(){
@@ -54,24 +59,39 @@ public class ControladoraVehiculo {
 	}
 	
 	@PostMapping("/guardarVehiculo/")
-	public ResponseEntity<Vehiculos> guardar(@RequestBody Vehiculos v) {
-		repoVehiculo.save(v);
-		return ResponseEntity.ok(v);
+	public ResponseEntity<?> guardar(@RequestBody Vehiculos v, @RequestParam(value = "placaOriginal", required = false) String placaOriginal) {
+	    
+	    if (placaOriginal != null && !placaOriginal.isEmpty() && !placaOriginal.equalsIgnoreCase(v.getPlaca())) {
+
+	        if (repoVehiculo.existsById(v.getPlaca())) {
+	            return ResponseEntity.badRequest().body("La nueva placa " + v.getPlaca() + " ya está registrada en otro vehículo.");
+	        }
+	        
+	        repoVehiculo.save(v);
+
+	        repoVehiculo.deleteById(placaOriginal);
+	        
+	        return ResponseEntity.ok(v);
+	    }
+	    
+	    if (placaOriginal == null || placaOriginal.isEmpty()) {
+	        if (repoVehiculo.existsById(v.getPlaca())) {
+	            return ResponseEntity.badRequest().body("La placa " + v.getPlaca() + " ya existe.");
+	        }
+	    }
+
+	    repoVehiculo.save(v);
+	    return ResponseEntity.ok(v);
 	}
+
 	
 
 	@PostMapping("/eliminarVehiculo/")
 	public Optional<Vehiculos> eliminarVehiculo(@RequestBody String n) {
-		Vehiculos v = this.repoVehiculo.findById(n).get();
-//		List<TipoVehiculo> t = this.RepositorioT.findByVehiculo(v);
-		
-//		for(int i=0 ; i<t.size() ;i++) {
-//			this.RepositorioT.deleteById(t.get(i).getIdTipoVehiculo());
-//		}
-		
 		this.repoVehiculo.deleteById(n);
 		return Optional.empty();
 	}
 
+	
 	
 }

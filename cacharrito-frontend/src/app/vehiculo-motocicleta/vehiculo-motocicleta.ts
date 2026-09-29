@@ -1,11 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef, signal } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Vehiculo } from '../entidades/vehiculo';
 import { VehiculoServicio } from '../servicios/vehiculo-servicio';
+import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
+import { Router } from '@angular/router';
 
 @Component({
-  // IMPORTANTE: Recuerda agregar CommonModule para dar soporte a directivas e imágenes
-  imports: [CommonModule], 
+  imports: [CommonModule],
   selector: 'app-vehiculo-motocicleta',
   styleUrl: './vehiculo-motocicleta.css',
   templateUrl: './vehiculo-motocicleta.html',
@@ -13,34 +14,64 @@ import { VehiculoServicio } from '../servicios/vehiculo-servicio';
 export class VehiculoMotocicleta implements OnInit {
 
   listaMotos = signal<Vehiculo[]>([]);
+  motoSeleccionada: Vehiculo | null = null;
 
-  constructor(private servicioVehiculo: VehiculoServicio, private cdr: ChangeDetectorRef) {}
+  private dataService = inject(EnviarDatoServicio);
+  private router = inject(Router);
 
   ngOnInit(): void {
-    this.obtenerCatalogoMotos();
+    this.motos();
   }
 
-  obtenerCatalogoMotos(): void {
-    this.servicioVehiculo.listarVehiculos().subscribe({
-      next: (todosLosVehiculos) => {
-        console.log('Catálogo completo recibido:', todosLosVehiculos);
+  constructor(private servicioVehiculo: VehiculoServicio, private cdr: ChangeDetectorRef) { }
 
-        const motocicletasFiltradas = todosLosVehiculos.filter((v: any) => 
+  motos() {
+    this.servicioVehiculo.listarVehiculo().subscribe({
+      next: (dato) => {
+        console.log('Motos recibidas:', dato);
+
+        const motosV = dato.filter((v: any) =>
           v.tipoVehiculo?.nombre?.trim().toLowerCase() === 'motocicleta'
         );
 
-        this.listaMotos.set(motocicletasFiltradas);
+        this.listaMotos.set(motosV);
         this.cdr.markForCheck();
       },
       error: (err) => {
-        console.error('Error al cargar el catálogo de motos:', err);
+        console.error('Error al cargar el listado de motos:', err);
       }
     });
   }
 
-  // Función para cuando el usuario presione el botón de EXPLORAR
-  explorarVehiculo(placa: string): void {
-    console.log('Explorando el vehículo con placa:', placa);
-    // Aquí podrás redirigir a una página de detalles o abrir información extra en el futuro
+  explorarVehiculo(v: Vehiculo) {
+    this.motoSeleccionada = v;
+    this.cdr.markForCheck();
+    setTimeout(() => {
+      this.abrirModal();
+    }, 10);
   }
+
+  abrirModal() {
+    const modal = document.getElementById("explorador");
+    if (modal != null) {
+      modal.style.display = 'block';
+    }
+  }
+
+  cerrarModal() {
+    const modal = document.getElementById("explorador");
+    if (modal != null) {
+      modal.style.display = 'none';
+    }
+    this.motoSeleccionada = null;
+  }
+
+  enviarSeleccionado(v: Vehiculo){
+    console.log(v)
+    this.dataService.enviar(v);
+    alert(`Vehiculo "${v.nombre}" seleccionado correctamente.`);
+    this.cerrarModal();
+    this.router.navigate(['/AlquilerComponente']);
+  }
+
 }

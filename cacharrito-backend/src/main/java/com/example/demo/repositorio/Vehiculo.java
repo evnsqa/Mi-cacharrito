@@ -15,4 +15,7 @@ public interface Vehiculo  extends JpaRepository<Vehiculos, String> {
 	public List<Vehiculos> findByPrecio (Double precio);
 	
 	public List<Vehiculos> findByEstado (String estado);
+	
+	public List<Vehiculos> findByTipoVehiculoNombre (String nombre);
+	
 }
