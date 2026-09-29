@@ -18,6 +18,7 @@ export class VehiculoServicio {
     private buscarPr='http://localhost:8080/vehiculo/v/buscarPrecio/'; 
     private buscarE='http://localhost:8080/vehiculo/v/buscarEstado/'; 
     private buscarT='http://localhost:8080/vehiculo/v/buscarPorTipo/';
+    private buscarTE='http://localhost:8080/vehiculo/v/buscarPorTipoEstado/';
 
 
     listarVehiculo(): Observable<any>{
@@ -61,4 +62,10 @@ export class VehiculoServicio {
         const params = new HttpParams().set('nombre', nombre);
         return this.httpCliente.post<Vehiculo[]>(this.buscarT, null, { params });
     }
+
+    buscarPorTipoEstado(nombreTipo: string): Observable<Vehiculo[]> {
+        return this.httpCliente.post<Vehiculo[]>(`${this.buscarTE}?nombreTipo=${nombreTipo}`, null);
+    }
+
+
 }
