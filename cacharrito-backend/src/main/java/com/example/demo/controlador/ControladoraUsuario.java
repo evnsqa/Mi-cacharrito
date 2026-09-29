@@ -31,6 +31,7 @@ public class ControladoraUsuario {
             return new ResponseEntity<>("El número de identificación ya está registrado", HttpStatus.BAD_REQUEST);
         }
         
+        
         Usuario usuarioGuardado = repoUsuario.save(nuevoUsuario);
         return new ResponseEntity<>(usuarioGuardado, HttpStatus.CREATED);
     }
