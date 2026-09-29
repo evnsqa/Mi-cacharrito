@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AdministradorComponente } from '../administrador-componente/administrador-componente';
+import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
   selector: 'app-noticias',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Navegacion],
   templateUrl: './noticias.html',
   styleUrls: ['./noticias.css']
 })

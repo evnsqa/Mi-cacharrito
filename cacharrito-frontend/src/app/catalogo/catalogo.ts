@@ -2,11 +2,11 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ServiciosTipoVehiculo } from '../servicios/servicios-tipo-vehiculo';
+import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
   selector: 'app-catalogo',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Navegacion],
   templateUrl: './catalogo.html',
   styleUrls: ['./catalogo.css']
 })

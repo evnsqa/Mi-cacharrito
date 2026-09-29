@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Navegacion],
   selector: 'app-contacto-componente',
   styleUrl: './contacto-componente.css',
   templateUrl: './contacto-componente.html',
