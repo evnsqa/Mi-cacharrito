@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="/inicioAdmin">
+            <img src="/recursos/logo.png" alt="Mi Cacharrito" width="120" height="50">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#miMenuAdmin" aria-controls="miMenuAdmin"
+            aria-expanded="false" aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="miMenuAdmin">
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#">Vehículos</a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="">Vehículos disponibles</a></li>
+                        <li><a class="dropdown-item" routerLink="">Entregar vehículo</a></li>
+                        <li><a class="dropdown-item" href="#">Recibir vehículo</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#">Clientes</a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Clientes registrados</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#">Alquileres</a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/AlquilerPendiente">Alquileres pendientes</a></li>
+                        <li><a class="dropdown-item" href="#">Alquileres entregados</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            <div class="perfil-admin dropdown ms-auto">
+
+                <a class="nav-link" href="#">
+                    <img src="/recursos/perfil.png" alt="Perfil" width="35" height="35">
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                    <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</nav>

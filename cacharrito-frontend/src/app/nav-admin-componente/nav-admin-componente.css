@@ -1,0 +1,57 @@
+.navbar {
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0.792),
+        rgba(0, 0, 0, 0.626)
+    );
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+
+
+
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+.dropdown-item {
+    color: white;
+}
+
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+
+
+.perfil-admin img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.perfil-admin .nav-link {
+    padding: 5px 10px;
+}
+
+.dropdown-menu {
+    z-index: 2000;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.perfil-admin:hover .dropdown-menu {
+    display: block;
+}

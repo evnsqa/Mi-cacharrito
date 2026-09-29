@@ -13,6 +13,8 @@ export class UsuarioServicio {
     private listaUsuarios = "http://localhost:8080/api/usuarios/listarTodo"
     private loginU = "http://localhost:8080/api/usuarios/login"
     private registroU = "http://localhost:8080/api/usuarios/registro"
+    private buscarNombre = "http://localhost:8080/api/usuarios/nombreCompleto"
+
 
     listarUsusarios(): Observable<any>{
         return this.httpCliente.get(`${this.listaUsuarios}`)
@@ -25,5 +27,10 @@ export class UsuarioServicio {
     loginUsuario(identificacion: string, password: string): Observable<any>{
         const params = new HttpParams().set("identificacionUsuario", identificacion).set("password", password)
         return this.httpCliente.post(`${this.loginU}`, null, {params: params})
+    }
+
+    buscarNombreC(nombre: string): Observable<any>{
+        const params = new HttpParams().set("nombre", nombre)
+        return this.httpCliente.get(`${this.buscarNombre}`, {params: params})
     }
 }

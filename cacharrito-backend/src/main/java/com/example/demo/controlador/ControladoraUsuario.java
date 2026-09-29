@@ -62,4 +62,6 @@ public class ControladoraUsuario {
     public List<Usuario> categoriaLicencia(@RequestParam("categoria") String categoriaLicencia) {
         return repoUsuario.findByCategoriaLicencia(categoriaLicencia);
     }
+    
+    
 }
