@@ -30,6 +30,11 @@ public class ControladorAlquiler {
 		repositorioAlquiler.save(a);
 		return ResponseEntity.ok(a);
 	}
+	
+	@GetMapping("/listarPorUsuario/")
+	public List<Alquiler> listarPorUsuario(@RequestParam("idUsuario") Long idUsuario) {
+	    return this.repositorioAlquiler.alquileresPorUsuario(idUsuario);
+	}
 
 
 	@PostMapping("/cancelarAlquiler/")

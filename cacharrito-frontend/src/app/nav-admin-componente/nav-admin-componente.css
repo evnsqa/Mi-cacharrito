@@ -1,5 +1,5 @@
-.navbar {
 
+.navbar {
     background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.9),
@@ -14,25 +14,64 @@
 }
 
 
-
-
-.dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+.dropdown {
+    position: relative;
 }
 
 
+.dropdown-toggle::after {
+    display: none ;
+}
+
+.dropdown-menu {
+    min-width: 220px;
+    margin-top: 8px ;
+    padding: 8px;
+    background-color: white;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+
+}
+
 .dropdown-item {
-    color: white;
+    color: #222 ;
+    padding: 10px 14px;
+    border-radius: 7px;
+    font-size: 15px;
+    white-space: nowrap;
 }
 
 
 .dropdown-item:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: white;
+    background-color: #f0f0f0;
+    color: #1f5f8b ;
+    padding-left: 18px;
 }
 
 
+.navbar .nav-link {
+    transition: color 0.2s ease;
+}
+
+
+.navbar .nav-link:hover {
+    color: white ;
+}
+
+.perfil-admin {
+    position: relative;
+}
+
+.perfil-admin .dropdown-menu {
+    right: 0 ;
+    left: auto ;
+    min-width: 180px;
+    margin-top: 8px ;
+}
 
 .perfil-admin img {
     border-radius: 50%;
@@ -44,14 +83,8 @@
     padding: 5px 10px;
 }
 
-.dropdown-menu {
-    z-index: 2000;
-}
 
-.nav-item:hover .dropdown-menu {
-    display: block;
-}
-
-.perfil-admin:hover .dropdown-menu {
-    display: block;
+.perfil-admin .nav-link:hover img {
+    transform: scale(1.05);
+    opacity: 0.9;
 }

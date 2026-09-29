@@ -1,0 +1,86 @@
+<section class="container1">
+    <div class="Tittle">
+        <h2>MIS ALQUILERES ACTIVOS</h2>
+    </div>
+    </section>
+
+    <section class="datosAlquileres">
+    <div class="container my-1">
+        <div class="row justify-content-center">
+        <div class="col-md-10">
+
+            <div class="tableMisAlquileres">
+
+            <table class="table table-striped table-hover table-bordered">
+
+                <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">TIPO VEHÍCULO</th>
+                    <th scope="col" class="text-center">PLACA</th>
+                    <th scope="col" class="text-center">FECHAS DE ALQUILER</th>
+                    <th scope="col" class="text-center">ESTADO</th>
+                    <th scope="col" class="text-center">ACCIÓN</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr *ngFor="let alquiler of datosPaginados()">
+
+                    <td class="text-center">
+                    {{ alquiler.numeroAlquiler }}
+                    </td>
+
+                    <td class="text-center">
+                    {{ alquiler.vehiculos?.tipo }}
+                    </td>
+
+                    <td class="text-center">
+                    {{ alquiler.vehiculos?.placa }}
+                    </td>
+
+                    <td class="text-center">
+                    {{ alquiler.fechaInicio }} <br>
+                    hasta <br>
+                    {{ alquiler.fechaEntrega }}
+                    </td>
+
+                    <td class="text-center">
+                    {{ alquiler.estado }}
+                    </td>
+
+                    <td class="text-center">
+                        <button type="button" class="btn btn-danger" (click)="cancelarAlquiler(alquiler.numeroAlquiler)">Cancelar</button>
+                    </td>
+
+                </tr>
+
+                <tr *ngIf="alquileres().length === 0">
+                    <td colspan="6" class="text-center">No tienes alquileres activos. </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+            <div class="paginacion">
+            <button
+                type="button"(click)="cambiarPagina(paginaActual() - 1)" [disabled]="paginaActual() === 1">
+                <
+            </button>
+
+            <span>
+                Página {{ paginaActual() }} de {{ totalPaginas() }}
+            </span>
+
+            <button
+                type="button"(click)="cambiarPagina(paginaActual() + 1)" [disabled]="paginaActual() === totalPaginas()">
+                >
+            </button>
+
+            </div>
+
+        </div>
+        </div>
+    </div>
+</section>
