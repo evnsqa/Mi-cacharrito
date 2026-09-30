@@ -35,9 +35,10 @@ public interface alquileres extends JpaRepository<Alquiler, Long>{
 		@Transactional
 		@Query("UPDATE Alquiler a SET a.estado = 'disponible', a.valorTotal = a.valorTotal + :valorExtra WHERE a.numeroAlquiler = :id")
 		Integer devolverVehiculo(@Param("id") Long id, @Param("valorExtra") Double valorExtra);
+		
 
 		public List<Alquiler> findByUsuario (Usuario usuario);
 
-}
+	}
 
 
